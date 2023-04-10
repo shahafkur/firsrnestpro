@@ -3,9 +3,8 @@ import { ProdactsService } from './prodacts.service';
 
 @Controller('prodacts')
 export class ProdactsController {
-  prodec: ProdactsService;
-  constructor(prodev: ProdactsService) {
-    this.prodec = prodev;
+
+  constructor(readonly prodactsService: ProdactsService) {
   }
   @Post()
   dimental(
@@ -13,11 +12,11 @@ export class ProdactsController {
     @Body('title') tit: string,
     @Body('desi') desc: string,
   ): {id:string} {
-    const oo: string = this.prodec.addprodacttoarr(tit, desc, prici);
+    const oo: string = this.prodactsService.addprodacttoarr(tit, desc, prici);
     return {id:'shodome'}
   }
   @Get()
   retaAll(){
-    return this.prodec.getall();
+    return this.prodactsService.getall();
   }
 }
