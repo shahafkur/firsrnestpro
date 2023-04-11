@@ -3,20 +3,20 @@ import { ProdactsService } from './prodacts.service';
 
 @Controller('prodacts')
 export class ProdactsController {
-
-  constructor(readonly prodactsService: ProdactsService) {
-  }
+  constructor(public prodactsService: ProdactsService) {}
   @Post()
   dimental(
-    @Body('price') prici: number,
-    @Body('title') tit: string,
-    @Body('desi') desc: string,
-  ): {id:string} {
-    const oo: string = this.prodactsService.addprodacttoarr(tit, desc, prici);
-    return {id:'shodome'}
+    @Body() mybody: { title: string; description: string; price: number },
+  ) {
+    const oo: string = this.prodactsService.addprodacttoarr(
+      mybody.title,
+      mybody.description,
+      mybody.price,
+    );
+    return oo;
   }
   @Get()
-  retaAll(){
+  retaAll() {
     return this.prodactsService.getall();
   }
 }
